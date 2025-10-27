@@ -1,7 +1,7 @@
 "use client";
 
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchPosts } from "../../../lib/apis";
+import { fetchPosts } from "@/lib/apis";
 
 export function PostList() {
   const { data: posts } = useSuspenseQuery({

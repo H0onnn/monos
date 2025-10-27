@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchPosts } from "../../../lib/apis";
+import { fetchPosts } from "@/lib/apis";
 
 export function PostsList() {
   const {

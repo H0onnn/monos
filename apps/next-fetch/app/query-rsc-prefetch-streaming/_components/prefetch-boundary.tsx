@@ -6,7 +6,7 @@ import {
   isPrefetchInfiniteOptions,
 } from "../query.types";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import { getQueryClient } from "../../../lib/query";
+import { getQueryClient } from "@/lib/query";
 
 type Props = {
   prefetchOptions:

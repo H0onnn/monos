@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchPosts, fetchComments } from "../../../lib/apis";
+import { fetchPosts, fetchComments } from "@/lib/apis";
 import { useState, useEffect } from "react";
 
 export function DataSection() {

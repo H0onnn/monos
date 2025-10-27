@@ -1,7 +1,7 @@
 /**
  * App router RSC basic fetch
  */
-import { fetchPosts, fetchComments, fetchUser } from "../../lib/apis";
+import { fetchPosts, fetchComments, fetchUser } from "@/lib/apis";
 import Link from "next/link";
 
 export default async function AppRouterBasic() {

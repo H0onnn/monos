@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SuspensePrefetchBoundary } from "./_components/prefetch-boundary";
 import { PostList } from "./_components/post-list";
 import { CommentsList } from "./_components/comment-list";
-import { fetchComments, fetchPosts } from "../../lib/apis";
+import { fetchComments, fetchPosts } from "@/lib/apis";
 
 export default function StreamingFetchPage() {
   return (

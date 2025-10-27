@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchComments } from "../../../lib/apis";
+import { fetchComments } from "@/lib/apis";
 
 export function CommentsList() {
   const { data: comments, isPending } = useQuery({

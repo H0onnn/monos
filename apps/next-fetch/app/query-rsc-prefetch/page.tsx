@@ -3,8 +3,8 @@
  */
 import Link from "next/link";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import { getQueryClient } from "../../lib/query";
-import { fetchPosts, fetchComments } from "../../lib/apis";
+import { getQueryClient } from "@/lib/query";
+import { fetchPosts, fetchComments } from "@/lib/apis";
 import { PostList } from "./_components/post-list";
 import { CommentsList } from "./_components/comment-list";
 

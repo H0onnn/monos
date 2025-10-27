@@ -213,3 +213,76 @@ dependsOn은 작업 간의 의존 관계를 설정할 때 사용.
 
 참고 : pnpm version hoisting
 * https://joonggon.me/posts/pnpm-workspace-peer-dependency-resolve
+
+### 4. TypeScript Path Alias 설정
+
+#### 4-1. Path Alias란?
+
+상대 경로(`../../components/Button`)를 절대 경로(`@/components/Button`)로 변경하여 import 경로를 단순화하는 기능
+
+#### 4-2. 설정 방법
+
+**1) 베이스 설정 파일 수정**
+
+`packages/typescript-config/base.json`에 paths 설정 추가:
+
+```json
+{
+  "compilerOptions": {
+    ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+**2) 각 패키지의 tsconfig.json 수정**
+
+각 패키지에서 path alias를 사용하려면 개별적으로 설정 필요:
+
+```json
+// packages/ui/tsconfig.json
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+
+// apps/web/tsconfig.json 또는 apps/next-fetch/tsconfig.json
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]  // Next.js 앱의 경우 루트부터 시작
+    }
+  }
+}
+```
+
+#### 4-3. 사용 예시
+
+```typescript
+// Before: 상대 경로
+import { Button } from '../../components/Button'
+import { useAuth } from '../../../hooks/useAuth'
+
+// After: 절대 경로
+import { Button } from '@/components/Button'
+import { useAuth } from '@/hooks/useAuth'
+
+// 다른 워크스페이스 패키지는 패키지명으로
+import { SomeComponent } from '@repo/ui/SomeComponent'
+```
+
+**주요 포인트:**
+- `@/`는 각 패키지 **내부**에서 사용하는 경로 별칭
+- `@repo/package-name`은 **다른 워크스페이스 패키지**를 참조할 때 사용
+- Next.js 앱은 `app`, `components` 등이 루트에 있으므로 `"./*"` 사용
+- 일반 라이브러리는 `src` 폴더 기준이므로 `"./src/*"` 사용
